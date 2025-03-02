@@ -1,32 +1,30 @@
-🔥 Alternatif 2: Tailscale (VPN Tabanlı, En Stabil)
+🔥 Alternatif 1: Serveo.net (Ücretsiz ve Basit)
 📌 Avantajları:
-✅ CGNAT ile %100 çalışır.
-✅ Ücretsizdir.
-✅ TCP ve UDP'yi tam destekler.
-✅ Dinamik ama sabit domain ataması vardır (örneğin ubuntu-tunnel.tailnet100.ts.net).
+✅ Ücretsiz ve kayıt gerektirmez.
+✅ SSH Tünel mantığında çalışır, TCP destekler.
+❌ IP adresi dinamik (her bağlantıda değişir).
 
-1️⃣ Ubuntu’ya Tailscale Kur
-
-bash
-Kopyala
-Düzenle
-curl -fsSL https://tailscale.com/install.sh | sh
-sudo tailscale up
-2️⃣ Windows’a Tailscale Kur
-
-Buradan indir ve yükle.
-Tailscale’e giriş yap.
-3️⃣ Ubuntu’da Tailscale IP’ni Öğren
+Ubuntu terminalinde şu komutu çalıştır:
 
 bash
 Kopyala
 Düzenle
-tailscale ip -4
-Bu, sana 10.x.x.x şeklinde bir IP verecek.
+ssh -R 3236:localhost:3236 serveo.net
+Bu komut çalışınca sana bir public TCP adresi verecek. Örneğin:
 
+csharp
+Kopyala
+Düzenle
+Forwarding TCP connections from serveo.net:XXXXX
 📌 Windows’ta V2Ray Ayarları:
 
-Address: Ubuntu’nun Tailscale IP’si
-Port: 3236
-Protocol: TCP
-Böylece, CGNAT veya paylaşılmış IP sorunu olmadan doğrudan Ubuntu’ya bağlanabilirsin.
+Address: serveo.net
+Port: XXXXX (Serveo’nun verdiği port)
+Protocol: TCP (VMess, VLess veya Shadowsocks protokolünü kullanıyorsan, uygun olanı seç)
+🔹 Bağlantıyı sürekli açık tutmak için:
+
+bash
+Kopyala
+Düzenle
+while true; do ssh -R 3236:localhost:3236 serveo.net; sleep 10; done
+Bu sayede bağlantı koparsa otomatik tekrar bağlanır.
