@@ -1,1 +1,25 @@
-1riQBVlXvUeNgQE9oKjsh7RHion_2gHutnvtbGfcDEJxGCtmc
+Cloudflare hesabı aç ve bir domain ekle.
+
+Ubuntu makineye cloudflared yükle:
+
+bash
+Kopyala
+Düzenle
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+chmod +x cloudflared-linux-amd64
+sudo mv cloudflared-linux-amd64 /usr/local/bin/cloudflared
+Cloudflare'e giriş yap:
+
+bash
+Kopyala
+Düzenle
+cloudflared tunnel login
+(Tarayıcıdan yetkilendirme yapacaksın.)
+
+Tüneli başlat:
+
+bash
+Kopyala
+Düzenle
+cloudflared tunnel --url tcp://localhost:3236
+Sana public bir bağlantı adresi verecek, bunu V2Ray’in config.json dosyasına eklemelisin.
