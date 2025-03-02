@@ -1,25 +1,32 @@
-Cloudflare hesabı aç ve bir domain ekle.
+🔥 Alternatif 2: Tailscale (VPN Tabanlı, En Stabil)
+📌 Avantajları:
+✅ CGNAT ile %100 çalışır.
+✅ Ücretsizdir.
+✅ TCP ve UDP'yi tam destekler.
+✅ Dinamik ama sabit domain ataması vardır (örneğin ubuntu-tunnel.tailnet100.ts.net).
 
-Ubuntu makineye cloudflared yükle:
-
-bash
-Kopyala
-Düzenle
-wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
-chmod +x cloudflared-linux-amd64
-sudo mv cloudflared-linux-amd64 /usr/local/bin/cloudflared
-Cloudflare'e giriş yap:
+1️⃣ Ubuntu’ya Tailscale Kur
 
 bash
 Kopyala
 Düzenle
-cloudflared tunnel login
-(Tarayıcıdan yetkilendirme yapacaksın.)
+curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up
+2️⃣ Windows’a Tailscale Kur
 
-Tüneli başlat:
+Buradan indir ve yükle.
+Tailscale’e giriş yap.
+3️⃣ Ubuntu’da Tailscale IP’ni Öğren
 
 bash
 Kopyala
 Düzenle
-cloudflared tunnel --url tcp://localhost:3236
-Sana public bir bağlantı adresi verecek, bunu V2Ray’in config.json dosyasına eklemelisin.
+tailscale ip -4
+Bu, sana 10.x.x.x şeklinde bir IP verecek.
+
+📌 Windows’ta V2Ray Ayarları:
+
+Address: Ubuntu’nun Tailscale IP’si
+Port: 3236
+Protocol: TCP
+Böylece, CGNAT veya paylaşılmış IP sorunu olmadan doğrudan Ubuntu’ya bağlanabilirsin.
